@@ -1,0 +1,34 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Light Mode (default) */
+html.light {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+  }
+  
+  /* Dark Mode */
+  html.dark {
+    --bg-color: #111827;
+    --text-color: #e5e7eb;
+  }
+  
+  /* Apply Theme */
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientMove 4s ease infinite;
+  }
+  
