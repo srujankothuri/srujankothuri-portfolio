@@ -82,7 +82,7 @@ const Home = () => {
           }`}
         >
           <img 
-            src="https://github.com/srujankothuri/srujan_portfolio/blob/main/srujan.jpg?raw=true"  // Replace with actual image path
+            src="https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/srujan.jpg?raw=true"  // Replace with actual image path
             alt="Srujan Kothuri"
             className="w-[450px] md:w-[500px] h-[400px] md:h-[450px] object-cover rounded-2xl shadow-lg transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-3"
           />
