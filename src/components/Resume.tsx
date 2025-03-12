@@ -8,8 +8,8 @@ const Resume = () => {
   const [selectedFormat, setSelectedFormat] = useState("pdf");
 
   const resumeFiles = {
-    pdf: "https://github.com/srujankothuri/srujan_portfolio/blob/main/Kothuri_Venkata_Srujan_Resume.pdf?raw=true",
-    docx: "https://github.com/srujankothuri/srujan_portfolio/blob/main/Kothuri_Venkata_Srujan_Resume.docx?raw=true",
+    pdf: "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/Kothuri_Venkata_Srujan_Resume.pdf?raw=true",
+    docx: "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/Kothuri_Venkata_Srujan_Resume.docx?raw=true",
   };
 
   const getIcon = (format) => {
