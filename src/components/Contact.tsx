@@ -21,19 +21,19 @@ const Contact = () => {
 
       {/* Contact Icons */}
       <div className="flex gap-12 mb-12">
-        <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-125">
+        <a href="https://github.com/srujankothuri" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-125">
           <FaGithub className="text-5xl drop-shadow-lg transition duration-300 hover:text-gray-400" />
         </a>
 
-        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-125">
+        <a href="https://www.linkedin.com/in/srujan-kothuri-2044ba250/" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-125">
           <FaLinkedin className="text-5xl text-blue-600 dark:text-blue-400 drop-shadow-lg transition duration-300 hover:text-blue-300" />
         </a>
 
-        <a href="https://instagram.com/your-profile" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-125">
+        <a href="https://www.instagram.com/srujankothuri/" target="_blank" rel="noopener noreferrer" className="transition-transform transform hover:scale-125">
           <FaInstagram className="text-5xl text-pink-500 dark:text-pink-400 drop-shadow-lg transition duration-300 hover:text-pink-300" />
         </a>
 
-        <a href="mailto:your-email@gmail.com" className="transition-transform transform hover:scale-125">
+        <a href="mailto:srujan019@gmail.com" className="transition-transform transform hover:scale-125">
           <FaEnvelope className="text-5xl text-red-600 dark:text-red-400 drop-shadow-lg transition duration-300 hover:text-red-300" />
         </a>
       </div>
