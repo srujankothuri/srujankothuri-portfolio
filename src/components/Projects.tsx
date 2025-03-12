@@ -6,7 +6,7 @@ const projects = [
   {
     title: "Automated Legal Case Judgement Predictor",
     category: "Machine Learning, Natural Language Processing",
-    image: "https://github.com/srujankothuri/srujan_portfolio/blob/main/legal_auto.jpg?raw=true",
+    image: "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/legal_auto.jpg?raw=true",
     description: "An Automated system that predicts the judgement of legal cases and also provides corresponding explanation for the same.",
     techStack: ["Transformers", "Scikit-learn", "TensorFlow", "NLP", "ML"],
     githubLink: "https://github.com/srujankothuri/Legal-prediction-explanation",
@@ -14,7 +14,7 @@ const projects = [
   {
     title: "LegalSmart Chatbot",
     category: "Natural Language Processing, Conversational AI",
-    image: "https://raw.githubusercontent.com/srujankothuri/srujan_portfolio/refs/heads/main/legal-bot.webp",
+    image: "https://raw.githubusercontent.com/srujankothuri/srujankothuri-portfolio/refs/heads/main/src/components/legal-bot.webp",
     description: "An AI chatbot that answers common legal questions for both naive users and legal professionals.",
     techStack: ["Mistral", "RAG", "Langchain", "AI", "NLP", "LLM"],
     githubLink: "https://github.com/srujankothuri/LegalSmart-Chatbot",
@@ -22,7 +22,7 @@ const projects = [
   {
     title: "HIVE - An All-in-One Hub for Productivity & Communication",
     category: "Full Stack Development",
-    image: "https://github.com/srujankothuri/srujan_portfolio/blob/main/fullstac.jpg?raw=true",
+    image: "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/fullstac.jpg?raw=true",
     description: "A fullstack app that enables users to add personal notes, upload files visible to all logged-in users, and chat with others.",
     techStack: ["Flask", "SqlAlchemy", "Pandas", "Python", "Socket.io"],
     githubLink: "https://github.com/srujankothuri/HIVE_Hub-of_productivity-communication",
@@ -30,7 +30,7 @@ const projects = [
   {
     title: "FaceDetectCV",
     category: "Computer Vision",
-    image: "https://github.com/srujankothuri/srujan_portfolio/blob/main/comp-vison.png?raw=true",
+    image: "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/comp-vison.png?raw=true",
     description: "An interactive app that identifies all faces in an image using computer vision's object detection concept, even marking faces in live video feeds.",
     techStack: ["OpenCV", "Python", "scikit-learn", "Deep Learning", "TensorFlow"],
     githubLink: "https://github.com/srujankothuri/FaceDetectCV",
