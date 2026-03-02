@@ -336,14 +336,6 @@ const FeaturedCard = ({
                 theme === "dark" ? "#111827" : "#f3f4f6",
             }}
           />
-          {/* Bottom fade */}
-          <div
-            className={`absolute bottom-0 left-0 right-0 h-10 ${
-              theme === "dark"
-                ? "bg-gradient-to-t from-gray-900 to-transparent"
-                : "bg-gradient-to-t from-white to-transparent"
-            }`}
-          />
         </div>
       )}
 
