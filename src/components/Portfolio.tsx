@@ -50,9 +50,6 @@ const Portfolio = () => {
         <section id="about">
           <About />
         </section>
-        <section id="journey">
-          <PlaceholderSection id="journey" title="My Journey So Far" />
-        </section>
         <section id="experience">
           <PlaceholderSection id="experience" title="Work Experience" />
         </section>
