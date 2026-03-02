@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Experience from "./Experience";
 import Home from "./Home";
 import About from "./About";
 import Projects from "./Projects";
@@ -51,7 +52,7 @@ const Portfolio = () => {
           <About />
         </section>
         <section id="experience">
-          <PlaceholderSection id="experience" title="Work Experience" />
+          <Experience />
         </section>
         <section id="education">
           <PlaceholderSection id="education" title="Education" />
