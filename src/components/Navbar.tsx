@@ -16,8 +16,7 @@ const navItems = [
   { id: "contact", label: "Contact" },
 ];
 
-const RESUME_URL =
-  "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/Kothuri_Venkata_Srujan_Resume.pdf?raw=true";
+const RESUME_URL = "/Srujan_Kothuri_Software_Engineer_Resume.pdf";
 const GITHUB_URL = "https://github.com/srujankothuri";
 const LINKEDIN_URL = "https://www.linkedin.com/in/srujan-kothuri-2044ba250/";
 
