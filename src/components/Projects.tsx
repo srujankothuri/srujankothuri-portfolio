@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Star } from "lucide-react";
 import { useTheme } from "./ThemeContext";
+import taxipulseImg from "../assets/images/taxipulse.jpeg";
+import sentinelfsImg from "../assets/images/sentinelfs.jpeg";
+import legalaiImg from "../assets/images/legalai.jpeg";
+import spendwiseaiImg from "../assets/images/spendwiseai.jpeg";
 
 interface Project {
   title: string;
@@ -15,14 +19,15 @@ interface Project {
   gradient: string;
   glowColor: string;
   featured?: boolean;
+  image?: string;
 }
 
 const filters = [
   "All",
-  "Data Engineering",
-  "Distributed Systems",
   "AI/ML",
+  "Data Engineering",
   "Full Stack",
+  "Distributed Systems",
   "Mobile",
 ];
 
@@ -31,7 +36,7 @@ const projects: Project[] = [
     title: "TaxiPulse",
     date: "2025",
     category: "Data Engineering",
-    highlight: "9.5M+ NYC taxi records · Medallion Architecture",
+    highlight: "9.5M+ NYC taxi records · Medallion Architecture · Live Dashboard",
     description:
       "End-to-end data platform with batch and streaming pipelines. Built Airflow orchestration, Kafka-based streaming, Medallion-style transformations, data-quality checks, anomaly detection, and interactive Streamlit dashboards.",
     techTags: ["Python", "Airflow", "Kafka", "PostgreSQL", "Docker", "Streamlit"],
@@ -40,12 +45,13 @@ const projects: Project[] = [
     gradient: "from-blue-500 to-cyan-500",
     glowColor: "rgba(59,130,246,0.12)",
     featured: true,
+    image: taxipulseImg,
   },
   {
     title: "SentinelFS",
     date: "2025",
     category: "Distributed Systems",
-    highlight: "Predictive self-healing · Multi-node replication",
+    highlight: "Predictive self-healing · 5-node cluster · Live monitoring",
     description:
       "Distributed file system with metadata coordination, chunk storage/replication, and proactive migration based on node-health trend analysis. Built with gRPC/protobuf communication and concurrent file workflows in Go. Dockerized for multi-node execution.",
     techTags: ["Go", "gRPC", "Protocol Buffers", "Docker"],
@@ -53,12 +59,13 @@ const projects: Project[] = [
     gradient: "from-teal-500 to-green-500",
     glowColor: "rgba(20,184,166,0.12)",
     featured: true,
+    image: sentinelfsImg,
   },
   {
     title: "Legal AI Suite",
     date: "2024 – 2025",
     category: "AI/ML",
-    highlight: "73.74% prediction accuracy · Published at Springer",
+    highlight: "73.74% prediction accuracy · Published at Springer (ICDSA 2025)",
     description:
       "End-to-end legal AI system spanning judgment prediction (XLNet + BiGRU on 35K+ cases), document summarization (InLegalBERT, 86.67% accuracy), and a RAG-powered legal chatbot using Mistral-7B, LangChain, and FAISS.",
     techTags: ["XLNet", "BiGRU", "InLegalBERT", "Mistral-7B", "LangChain", "FAISS", "Flask"],
@@ -66,6 +73,21 @@ const projects: Project[] = [
     gradient: "from-rose-500 to-purple-500",
     glowColor: "rgba(244,63,94,0.12)",
     featured: true,
+    image: legalaiImg,
+  },
+  {
+    title: "SpendWiseAI",
+    date: "2025",
+    category: "Mobile",
+    highlight: "Cross-platform iOS/Android · AI-assisted categorization",
+    description:
+      "Production-style mobile expense tracker with authentication, secure session persistence, budgeting, analytics dashboards, recurring-expense detection, CSV import/export, and layered AI categorization (rules / fuzzy matching / AI fallback).",
+    techTags: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
+    github: "https://github.com/srujankothuri/SpendWiseAI",
+    gradient: "from-cyan-500 to-blue-500",
+    glowColor: "rgba(6,182,212,0.12)",
+    featured: true,
+    image: spendwiseaiImg,
   },
   {
     title: "FraudLens",
@@ -79,18 +101,6 @@ const projects: Project[] = [
     demo: "https://fraudlens-srujankothuri.streamlit.app/",
     gradient: "from-purple-500 to-blue-500",
     glowColor: "rgba(139,92,246,0.12)",
-  },
-  {
-    title: "SpendWiseAI",
-    date: "2025",
-    category: "Mobile",
-    highlight: "Cross-platform iOS/Android · AI-assisted categorization",
-    description:
-      "Production-style mobile expense tracker with authentication, secure session persistence, budgeting, analytics dashboards, recurring-expense detection, CSV import/export, and layered AI categorization (rules / fuzzy matching / AI fallback).",
-    techTags: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
-    github: "https://github.com/srujankothuri/SpendWiseAI",
-    gradient: "from-cyan-500 to-blue-500",
-    glowColor: "rgba(6,182,212,0.12)",
   },
   {
     title: "ShopFlow",
@@ -144,6 +154,333 @@ const projects: Project[] = [
   },
 ];
 
+// Regular (non-featured) project card
+const RegularCard = ({
+  project,
+  theme,
+  i,
+}: {
+  project: Project;
+  theme: string;
+  i: number;
+}) => (
+  <motion.div
+    key={project.title}
+    className="relative group h-full"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: i * 0.08, duration: 0.4 }}
+  >
+    <div
+      className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+    />
+    <div
+      className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+      style={{ background: project.glowColor }}
+    />
+    <div
+      className={`relative h-full flex flex-col rounded-xl border overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5 ${
+        theme === "dark"
+          ? "bg-gray-900 border-gray-700/50"
+          : "bg-white border-gray-200"
+      }`}
+    >
+      <div className={`h-1 w-full bg-gradient-to-r ${project.gradient}`} />
+      <div className="flex flex-col flex-grow p-5">
+        <div className="flex items-center justify-between mb-3">
+          <span
+            className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+              theme === "dark"
+                ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                : "bg-blue-500/10 text-blue-600 border border-blue-500/20"
+            }`}
+          >
+            {project.category}
+          </span>
+          <span
+            className={`text-xs font-medium ${
+              theme === "dark" ? "text-gray-500" : "text-gray-400"
+            }`}
+          >
+            {project.date}
+          </span>
+        </div>
+        <h3
+          className={`text-lg font-bold mb-2 transition-colors duration-300 ${
+            theme === "dark"
+              ? "text-white group-hover:text-cyan-400"
+              : "text-gray-900 group-hover:text-blue-600"
+          }`}
+        >
+          {project.title}
+        </h3>
+        <div
+          className={`px-3 py-2 rounded-lg mb-3 ${
+            theme === "dark"
+              ? "bg-cyan-500/5 border border-cyan-500/15"
+              : "bg-blue-500/5 border border-blue-500/10"
+          }`}
+        >
+          <p
+            className={`text-sm font-semibold ${
+              theme === "dark" ? "text-cyan-400" : "text-blue-600"
+            }`}
+          >
+            {project.highlight}
+          </p>
+        </div>
+        <p
+          className={`text-sm leading-relaxed mb-4 flex-grow ${
+            theme === "dark" ? "text-gray-400" : "text-gray-600"
+          }`}
+        >
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.techTags.map((tag, j) => (
+            <span
+              key={j}
+              className={`px-2 py-1 text-[11px] font-medium rounded-md transition-colors duration-200 ${
+                theme === "dark"
+                  ? "bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
+                  : "bg-gray-100 text-gray-500 hover:text-blue-600 hover:bg-blue-500/10"
+              }`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div
+          className={`flex items-center gap-2.5 pt-4 mt-auto border-t ${
+            theme === "dark" ? "border-gray-700/50" : "border-gray-200"
+          }`}
+        >
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 ${
+                theme === "dark"
+                  ? "border-gray-700 text-gray-300 hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5"
+                  : "border-gray-200 text-gray-600 hover:border-blue-500/40 hover:text-blue-600 hover:bg-blue-500/5"
+              }`}
+            >
+              <Github size={14} />
+              Source Code
+            </a>
+          )}
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
+                theme === "dark"
+                  ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 hover:bg-cyan-500/25"
+                  : "bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/15"
+              }`}
+            >
+              <ExternalLink size={14} />
+              Live Demo
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+// Featured project card — wider with image
+const FeaturedCard = ({
+  project,
+  theme,
+  i,
+}: {
+  project: Project;
+  theme: string;
+  i: number;
+}) => (
+  <motion.div
+    key={project.title}
+    className="relative group md:col-span-2 lg:col-span-2"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: i * 0.1, duration: 0.5 }}
+  >
+    <div
+      className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+    />
+    <div
+      className="absolute -inset-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+      style={{ background: project.glowColor }}
+    />
+    <div
+      className={`relative rounded-xl border overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5 ${
+        theme === "dark"
+          ? "bg-gray-900 border-gray-700/50"
+          : "bg-white border-gray-200"
+      }`}
+    >
+      <div className={`h-1.5 w-full bg-gradient-to-r ${project.gradient}`} />
+      <div className="flex flex-col md:flex-row">
+        {/* Image */}
+        {project.image && (
+          <div className="md:w-2/5 relative overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-56 md:h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div
+              className={`absolute inset-0 ${
+                theme === "dark"
+                  ? "bg-gradient-to-r from-transparent via-transparent to-gray-900 hidden md:block"
+                  : "bg-gradient-to-r from-transparent via-transparent to-white hidden md:block"
+              }`}
+            />
+            <div
+              className={`absolute inset-0 md:hidden ${
+                theme === "dark"
+                  ? "bg-gradient-to-t from-gray-900 via-transparent to-transparent"
+                  : "bg-gradient-to-t from-white via-transparent to-transparent"
+              }`}
+            />
+          </div>
+        )}
+
+        {/* Content */}
+        <div
+          className={`flex-1 p-6 flex flex-col ${
+            project.image ? "md:w-3/5" : ""
+          }`}
+        >
+          {/* Top row */}
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <span
+              className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                theme === "dark"
+                  ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                  : "bg-blue-500/10 text-blue-600 border border-blue-500/20"
+              }`}
+            >
+              {project.category}
+            </span>
+            <span
+              className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                theme === "dark"
+                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                  : "bg-amber-500/10 text-amber-600 border border-amber-500/20"
+              }`}
+            >
+              <Star size={10} className="fill-current" />
+              Featured
+            </span>
+            <span
+              className={`text-xs font-medium ml-auto ${
+                theme === "dark" ? "text-gray-500" : "text-gray-400"
+              }`}
+            >
+              {project.date}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3
+            className={`text-xl font-bold mb-2 transition-colors duration-300 ${
+              theme === "dark"
+                ? "text-white group-hover:text-cyan-400"
+                : "text-gray-900 group-hover:text-blue-600"
+            }`}
+          >
+            {project.title}
+          </h3>
+
+          {/* Highlight */}
+          <div
+            className={`px-3 py-2 rounded-lg mb-3 ${
+              theme === "dark"
+                ? "bg-cyan-500/5 border border-cyan-500/15"
+                : "bg-blue-500/5 border border-blue-500/10"
+            }`}
+          >
+            <p
+              className={`text-sm font-semibold ${
+                theme === "dark" ? "text-cyan-400" : "text-blue-600"
+              }`}
+            >
+              {project.highlight}
+            </p>
+          </div>
+
+          {/* Description */}
+          <p
+            className={`text-sm leading-relaxed mb-4 flex-grow ${
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            {project.description}
+          </p>
+
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {project.techTags.map((tag, j) => (
+              <span
+                key={j}
+                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors duration-200 ${
+                  theme === "dark"
+                    ? "bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
+                    : "bg-gray-100 text-gray-500 hover:text-blue-600 hover:bg-blue-500/10"
+                }`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Action buttons */}
+          <div
+            className={`flex items-center gap-2.5 pt-4 mt-auto border-t ${
+              theme === "dark" ? "border-gray-700/50" : "border-gray-200"
+            }`}
+          >
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 ${
+                  theme === "dark"
+                    ? "border-gray-700 text-gray-300 hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5"
+                    : "border-gray-200 text-gray-600 hover:border-blue-500/40 hover:text-blue-600 hover:bg-blue-500/5"
+                }`}
+              >
+                <Github size={14} />
+                Source Code
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
+                  theme === "dark"
+                    ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 hover:bg-cyan-500/25"
+                    : "bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/15"
+                }`}
+              >
+                <ExternalLink size={14} />
+                Live Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 const Projects = () => {
   const { theme } = useTheme();
   const [activeFilter, setActiveFilter] = useState("All");
@@ -152,6 +489,9 @@ const Projects = () => {
     activeFilter === "All"
       ? projects
       : projects.filter((p) => p.category === activeFilter);
+
+  const featuredProjects = filteredProjects.filter((p) => p.featured);
+  const regularProjects = filteredProjects.filter((p) => !p.featured);
 
   return (
     <section
@@ -244,179 +584,65 @@ const Projects = () => {
           Showing {filteredProjects.length} of {projects.length} projects
         </p>
 
-        {/* Projects Grid */}
+        {/* Projects */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
           >
-            {filteredProjects.map((project, i) => (
-              <motion.div
-                key={project.title}
-                className="relative group h-full"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
-              >
-                {/* Gradient border glow */}
-                <div
-                  className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
-                />
-
-                {/* Hover glow shadow */}
-                <div
-                  className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
-                  style={{ background: project.glowColor }}
-                />
-
-                {/* Card */}
-                <div
-                  className={`relative h-full flex flex-col rounded-xl border overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5 ${
-                    theme === "dark"
-                      ? "bg-gray-900 border-gray-700/50"
-                      : "bg-white border-gray-200"
-                  }`}
-                >
-                  {/* Top gradient accent bar */}
-                  <div
-                    className={`h-1 w-full bg-gradient-to-r ${project.gradient}`}
+            {/* Featured Projects — 2 columns, each spans full width */}
+            {featuredProjects.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                {featuredProjects.map((project, i) => (
+                  <FeaturedCard
+                    key={project.title}
+                    project={project}
+                    theme={theme}
+                    i={i}
                   />
+                ))}
+              </div>
+            )}
 
-                  <div className="flex flex-col flex-grow p-5">
-                    {/* Top row — category + date + featured */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                            theme === "dark"
-                              ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                              : "bg-blue-500/10 text-blue-600 border border-blue-500/20"
-                          }`}
-                        >
-                          {project.category}
-                        </span>
-                        {project.featured && (
-                          <span
-                            className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                              theme === "dark"
-                                ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                                : "bg-amber-500/10 text-amber-600 border border-amber-500/20"
-                            }`}
-                          >
-                            <Star size={10} className="fill-current" />
-                            Featured
-                          </span>
-                        )}
-                      </div>
-                      <span
-                        className={`text-xs font-medium ${
-                          theme === "dark" ? "text-gray-500" : "text-gray-400"
-                        }`}
-                      >
-                        {project.date}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3
-                      className={`text-lg font-bold mb-2 transition-colors duration-300 ${
-                        theme === "dark"
-                          ? "text-white group-hover:text-cyan-400"
-                          : "text-gray-900 group-hover:text-blue-600"
-                      }`}
-                    >
-                      {project.title}
-                    </h3>
-
-                    {/* Highlight metric callout */}
+            {/* Regular Projects — 3 columns */}
+            {regularProjects.length > 0 && (
+              <>
+                {featuredProjects.length > 0 && (
+                  <div
+                    className={`flex items-center gap-4 mb-6 ${
+                      theme === "dark" ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  >
                     <div
-                      className={`px-3 py-2 rounded-lg mb-3 ${
-                        theme === "dark"
-                          ? "bg-cyan-500/5 border border-cyan-500/15"
-                          : "bg-blue-500/5 border border-blue-500/10"
+                      className={`flex-grow h-px ${
+                        theme === "dark" ? "bg-gray-800" : "bg-gray-200"
                       }`}
-                    >
-                      <p
-                        className={`text-sm font-semibold ${
-                          theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                        }`}
-                      >
-                        {project.highlight}
-                      </p>
-                    </div>
-
-                    {/* Description */}
-                    <p
-                      className={`text-sm leading-relaxed mb-4 flex-grow ${
-                        theme === "dark" ? "text-gray-400" : "text-gray-600"
-                      }`}
-                    >
-                      {project.description}
-                    </p>
-
-                    {/* Tech tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.techTags.map((tag, j) => (
-                        <span
-                          key={j}
-                          className={`px-2 py-1 text-[11px] font-medium rounded-md transition-colors duration-200 ${
-                            theme === "dark"
-                              ? "bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
-                              : "bg-gray-100 text-gray-500 hover:text-blue-600 hover:bg-blue-500/10"
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Action buttons */}
+                    />
+                    <span className="text-xs font-semibold uppercase tracking-wider">
+                      More Projects
+                    </span>
                     <div
-                      className={`flex items-center gap-2.5 pt-4 mt-auto border-t ${
-                        theme === "dark"
-                          ? "border-gray-700/50"
-                          : "border-gray-200"
+                      className={`flex-grow h-px ${
+                        theme === "dark" ? "bg-gray-800" : "bg-gray-200"
                       }`}
-                    >
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 ${
-                            theme === "dark"
-                              ? "border-gray-700 text-gray-300 hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5"
-                              : "border-gray-200 text-gray-600 hover:border-blue-500/40 hover:text-blue-600 hover:bg-blue-500/5"
-                          }`}
-                        >
-                          <Github size={14} />
-                          Source Code
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
-                            theme === "dark"
-                              ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 hover:bg-cyan-500/25"
-                              : "bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/15"
-                          }`}
-                        >
-                          <ExternalLink size={14} />
-                          Live Demo
-                        </a>
-                      )}
-                    </div>
+                    />
                   </div>
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {regularProjects.map((project, i) => (
+                    <RegularCard
+                      key={project.title}
+                      project={project}
+                      theme={theme}
+                      i={i}
+                    />
+                  ))}
                 </div>
-              </motion.div>
-            ))}
+              </>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
