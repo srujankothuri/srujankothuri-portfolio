@@ -5,11 +5,13 @@ const Home = () => {
   const { theme } = useTheme();
   
   const textSections = [
-    "Hi, I'm Srujan",
-    "AI/ML Intern @ Zenshastra",
-    "Final Year Undergraduate • PES University",
-    "Solving complex problems with creativity & code🚀 "
-  ];
+  "Hi, I'm Srujan",
+  "MS in Computer Science @ Northeastern University",
+  "Boston, Massachusetts",
+  "Former AI/ML Intern @ Zenshastra • B.Tech CSE @ PES University"
+];
+
+
 
   const [typedText, setTypedText] = useState<string[]>(["", "", "", ""]);
   const [showImage, setShowImage] = useState(false);
