@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, Award, BookOpen, MapPin, Calendar } from "lucide-react";
+import { GraduationCap, Award, MapPin } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 import neuImg from "../assets/images/northeastern.jpeg";
 import pesImg from "../assets/images/pes.jpeg";
@@ -8,6 +8,7 @@ import pesImg from "../assets/images/pes.jpeg";
 interface EducationItem {
   university: string;
   degree: string;
+  flag: string;
   location: string;
   date: string;
   gpa: string;
@@ -22,6 +23,7 @@ const education: EducationItem[] = [
   {
     university: "Northeastern University",
     degree: "M.S. in Computer Science",
+    flag: "🇺🇸",
     location: "Boston, MA",
     date: "Sep 2025 – May 2027",
     gpa: "3.83 / 4.0",
@@ -41,6 +43,7 @@ const education: EducationItem[] = [
   {
     university: "PES University",
     degree: "B.E. in Computer Science",
+    flag: "🇮🇳",
     location: "Bangalore, India",
     date: "Oct 2021 – May 2025",
     gpa: "3.97 / 4.0",
@@ -50,12 +53,14 @@ const education: EducationItem[] = [
       "📄 Published research at Springer (ICDSA 2025)",
     ],
     coursework: [
+      "Machine Learning",
+      "Big Data",
+      "Information Retrieval",
+      "Computer Networks",
+      "Operating Systems",
       "Data Structures",
       "Algorithms",
-      "Operating Systems",
-      "Computer Networks",
-      "DBMS",
-      "Software Engineering",
+      "Data Science",
     ],
     gradient: "from-purple-500 to-blue-500",
     glowColor: "rgba(139,92,246,0.12)",
@@ -200,7 +205,7 @@ const Education = () => {
                             : "text-gray-900 group-hover:text-blue-600"
                         }`}
                       >
-                        {edu.university}
+                        {edu.flag} {edu.university}
                       </h3>
                       <p
                         className={`text-sm font-medium ${
@@ -260,37 +265,34 @@ const Education = () => {
                     ))}
                   </div>
 
-                  {/* Coursework */}
+                  {/* Coursework — bullet list */}
                   <div>
-                    <div className="flex items-center gap-1.5 mb-3">
-                      <BookOpen
-                        size={14}
-                        className={
-                          theme === "dark" ? "text-gray-500" : "text-gray-400"
-                        }
-                      />
-                      <span
-                        className={`text-xs font-semibold uppercase tracking-wider ${
-                          theme === "dark" ? "text-gray-500" : "text-gray-400"
-                        }`}
-                      >
-                        Key Coursework
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
+                    <span
+                      className={`text-xs font-semibold uppercase tracking-wider ${
+                        theme === "dark" ? "text-gray-500" : "text-gray-400"
+                      }`}
+                    >
+                      Key Coursework
+                    </span>
+                    <ul className="mt-2.5 space-y-1.5">
                       {edu.coursework.map((course, j) => (
-                        <span
+                        <li
                           key={j}
-                          className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors duration-200 ${
-                            theme === "dark"
-                              ? "bg-gray-800 text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
-                              : "bg-gray-100 text-gray-600 hover:bg-blue-500/10 hover:text-blue-600"
+                          className={`flex items-center gap-2.5 text-sm ${
+                            theme === "dark" ? "text-gray-300" : "text-gray-600"
                           }`}
                         >
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                              theme === "dark"
+                                ? "bg-cyan-500/60"
+                                : "bg-blue-500/60"
+                            }`}
+                          />
                           {course}
-                        </span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 </div>
               </div>
