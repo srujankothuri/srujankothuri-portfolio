@@ -246,17 +246,17 @@ const Education = () => {
                     {edu.achievements.map((ach, j) => (
                       <div
                         key={j}
-                        className={`flex items-start gap-2.5 p-3 rounded-lg transition-all duration-200 ${
+                        className={`flex items-start gap-3 p-3 rounded-lg transition-all duration-200 ${
                           theme === "dark"
-                            ? "bg-gradient-to-r from-amber-500/10 to-transparent border border-amber-500/15 hover:from-amber-500/15"
-                            : "bg-gradient-to-r from-amber-50 to-transparent border border-amber-200/50 hover:from-amber-100"
+                            ? "bg-gradient-to-r from-cyan-500/8 to-transparent border border-cyan-500/15 hover:from-cyan-500/12"
+                            : "bg-gradient-to-r from-blue-500/5 to-transparent border border-blue-500/15 hover:from-blue-500/10"
                         }`}
                       >
                         <p
                           className={`text-sm font-medium leading-relaxed ${
                             theme === "dark"
-                              ? "text-amber-300"
-                              : "text-amber-700"
+                              ? "text-gray-200"
+                              : "text-gray-700"
                           }`}
                         >
                           {ach}
