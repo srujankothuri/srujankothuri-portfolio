@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, FileText, Mail, Rocket } from "lucide-react";
 import { useTheme } from "./ThemeContext";
+import profileImg from "../assets/images/srujan3.jpeg";
 
 const RESUME_URL = "/Srujan_Kothuri_Software_Engineer_Resume.pdf";
 
@@ -123,10 +124,10 @@ const Home = () => {
             theme === "dark" ? "text-gray-400" : "text-gray-600"
           }`}
         >
-          I build end-to-end data pipelines, distributed systems, and
-          AI-powered applications — from architecture to deployment. Passionate
-          about turning complex problems into scalable, production-ready
-          solutions.
+          I love turning complex engineering challenges into clean,
+          well-architected solutions. From data pipelines processing millions
+          of records to distributed systems and AI-powered apps — I build,
+          document, and ship.
         </p>
 
         {/* CTA Buttons */}
@@ -192,7 +193,7 @@ const Home = () => {
             }`}
           />
           <img
-            src="https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/srujan.jpg?raw=true"
+            src={profileImg}
             alt="Srujan Kothuri"
             className="relative w-[350px] md:w-[400px] lg:w-[420px] h-[380px] md:h-[430px] lg:h-[450px] object-cover rounded-2xl shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
