@@ -9,13 +9,16 @@ const Navbar = () => {
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
-    { id: "projects", label: "Projects" },
+    { id: "journey", label: "Journey" },
+    { id: "experience", label: "Experience" },
+    { id: "education", label: "Education" },
     { id: "skills", label: "Skills" },
-    { id: "resume", label: "Resume" },
-    { id: "contact", label: "Contact" }
+    { id: "projects", label: "Projects" },
+    { id: "roles", label: "Target Roles" },
+    { id: "contact", label: "Contact" },
   ];
 
-  const handleScroll = (id) => {
+  const handleScroll = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -23,7 +26,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollEvent = () => {
       let currentSection = "home";
 
       for (let item of navItems) {
@@ -40,8 +43,8 @@ const Navbar = () => {
       setActiveSection(currentSection);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollEvent);
+    return () => window.removeEventListener("scroll", handleScrollEvent);
   }, []);
 
   return (
@@ -68,12 +71,12 @@ const Navbar = () => {
         </div>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden lg:flex space-x-4">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleScroll(item.id)}
-              className={`relative text-lg font-medium transition-transform duration-200 ease-in-out group ${
+              className={`relative text-sm font-medium transition-transform duration-200 ease-in-out group ${
                 activeSection === item.id
                   ? "text-blue-500 dark:text-cyan-400 font-bold"
                   : "text-gray-700 dark:text-gray-300"
