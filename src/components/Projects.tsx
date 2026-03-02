@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Star } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 
 interface Project {
@@ -14,6 +14,7 @@ interface Project {
   demo?: string;
   gradient: string;
   glowColor: string;
+  featured?: boolean;
 }
 
 const filters = [
@@ -35,8 +36,10 @@ const projects: Project[] = [
       "End-to-end data platform with batch and streaming pipelines. Built Airflow orchestration, Kafka-based streaming, Medallion-style transformations, data-quality checks, anomaly detection, and interactive Streamlit dashboards.",
     techTags: ["Python", "Airflow", "Kafka", "PostgreSQL", "Docker", "Streamlit"],
     github: "https://github.com/srujankothuri/TaxiPulse",
+    demo: "https://taxipulse-srujankothuri.streamlit.app/",
     gradient: "from-blue-500 to-cyan-500",
     glowColor: "rgba(59,130,246,0.12)",
+    featured: true,
   },
   {
     title: "SentinelFS",
@@ -49,6 +52,20 @@ const projects: Project[] = [
     github: "https://github.com/srujankothuri/SentinelFS",
     gradient: "from-teal-500 to-green-500",
     glowColor: "rgba(20,184,166,0.12)",
+    featured: true,
+  },
+  {
+    title: "Legal AI Suite",
+    date: "2024 – 2025",
+    category: "AI/ML",
+    highlight: "73.74% prediction accuracy · Published at Springer",
+    description:
+      "End-to-end legal AI system spanning judgment prediction (XLNet + BiGRU on 35K+ cases), document summarization (InLegalBERT, 86.67% accuracy), and a RAG-powered legal chatbot using Mistral-7B, LangChain, and FAISS.",
+    techTags: ["XLNet", "BiGRU", "InLegalBERT", "Mistral-7B", "LangChain", "FAISS", "Flask"],
+    github: "https://github.com/srujankothuri/Legal-prediction-explanation",
+    gradient: "from-rose-500 to-purple-500",
+    glowColor: "rgba(244,63,94,0.12)",
+    featured: true,
   },
   {
     title: "FraudLens",
@@ -59,6 +76,7 @@ const projects: Project[] = [
       "Fraud detection machine learning workflow covering data preprocessing, feature engineering, model training with XGBoost, and metric-driven evaluation. Organized for reproducibility with interpretable analysis using SHAP explainability.",
     techTags: ["Python", "Scikit-learn", "XGBoost", "SHAP", "Pandas"],
     github: "https://github.com/srujankothuri/FraudLens",
+    demo: "https://fraudlens-srujankothuri.streamlit.app/",
     gradient: "from-purple-500 to-blue-500",
     glowColor: "rgba(139,92,246,0.12)",
   },
@@ -83,20 +101,9 @@ const projects: Project[] = [
       "Full-stack operations platform with authentication, role-based access, audit logging, relational data models via Prisma, a rules engine for nested condition evaluation, exportable reports, and workflow automation.",
     techTags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind"],
     github: "https://github.com/srujankothuri/ShopFlow",
+    demo: "https://shopflow-srujan-kothuris-projects.vercel.app/dashboard",
     gradient: "from-orange-500 to-rose-500",
     glowColor: "rgba(249,115,22,0.12)",
-  },
-  {
-    title: "Legal AI Suite",
-    date: "2024 – 2025",
-    category: "AI/ML",
-    highlight: "73.74% prediction accuracy · Springer published",
-    description:
-      "End-to-end legal AI system spanning judgment prediction (XLNet + BiGRU on 35K+ cases), document summarization (InLegalBERT, 86.67% accuracy), and a RAG-powered legal chatbot using Mistral-7B, LangChain, and FAISS.",
-    techTags: ["XLNet", "BiGRU", "InLegalBERT", "Mistral-7B", "LangChain", "FAISS", "Flask"],
-    github: "https://github.com/srujankothuri/Legal-prediction-explanation",
-    gradient: "from-rose-500 to-purple-500",
-    glowColor: "rgba(244,63,94,0.12)",
   },
   {
     title: "PageMaster",
@@ -268,111 +275,144 @@ const Projects = () => {
 
                 {/* Card */}
                 <div
-                  className={`relative h-full flex flex-col p-5 rounded-xl border transition-all duration-300 group-hover:-translate-y-1 ${
+                  className={`relative h-full flex flex-col rounded-xl border overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5 ${
                     theme === "dark"
                       ? "bg-gray-900 border-gray-700/50"
                       : "bg-white border-gray-200"
                   }`}
                 >
-                  {/* Top row — category + date */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span
-                      className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                        theme === "dark"
-                          ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
-                          : "bg-blue-500/10 text-blue-600 border border-blue-500/20"
-                      }`}
-                    >
-                      {project.category}
-                    </span>
-                    <span
-                      className={`text-xs font-medium ${
-                        theme === "dark" ? "text-gray-500" : "text-gray-400"
-                      }`}
-                    >
-                      {project.date}
-                    </span>
-                  </div>
+                  {/* Top gradient accent bar */}
+                  <div
+                    className={`h-1 w-full bg-gradient-to-r ${project.gradient}`}
+                  />
 
-                  {/* Title */}
-                  <h3
-                    className={`text-lg font-bold mb-1.5 transition-colors duration-300 ${
-                      theme === "dark"
-                        ? "text-white group-hover:text-cyan-400"
-                        : "text-gray-900 group-hover:text-blue-600"
-                    }`}
-                  >
-                    {project.title}
-                  </h3>
-
-                  {/* Highlight metric */}
-                  <p
-                    className={`text-sm font-semibold mb-3 ${
-                      theme === "dark" ? "text-cyan-400/80" : "text-blue-600/80"
-                    }`}
-                  >
-                    {project.highlight}
-                  </p>
-
-                  {/* Description */}
-                  <p
-                    className={`text-sm leading-relaxed mb-4 flex-grow ${
-                      theme === "dark" ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {project.description}
-                  </p>
-
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.techTags.map((tag, j) => (
+                  <div className="flex flex-col flex-grow p-5">
+                    {/* Top row — category + date + featured */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                            theme === "dark"
+                              ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                              : "bg-blue-500/10 text-blue-600 border border-blue-500/20"
+                          }`}
+                        >
+                          {project.category}
+                        </span>
+                        {project.featured && (
+                          <span
+                            className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                              theme === "dark"
+                                ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                                : "bg-amber-500/10 text-amber-600 border border-amber-500/20"
+                            }`}
+                          >
+                            <Star size={10} className="fill-current" />
+                            Featured
+                          </span>
+                        )}
+                      </div>
                       <span
-                        key={j}
-                        className={`px-2 py-1 text-[11px] font-medium rounded-md transition-colors duration-200 ${
-                          theme === "dark"
-                            ? "bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
-                            : "bg-gray-100 text-gray-500 hover:text-blue-600 hover:bg-blue-500/10"
+                        className={`text-xs font-medium ${
+                          theme === "dark" ? "text-gray-500" : "text-gray-400"
                         }`}
                       >
-                        {tag}
+                        {project.date}
                       </span>
-                    ))}
-                  </div>
+                    </div>
 
-                  {/* Links */}
-                  <div className="flex items-center gap-3 mt-auto pt-3 border-t border-dashed ${
-                    theme === 'dark' ? 'border-gray-700/50' : 'border-gray-200'
-                  }">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 ${
-                          theme === "dark"
-                            ? "text-gray-400 hover:text-cyan-400"
-                            : "text-gray-500 hover:text-blue-600"
+                    {/* Title */}
+                    <h3
+                      className={`text-lg font-bold mb-2 transition-colors duration-300 ${
+                        theme === "dark"
+                          ? "text-white group-hover:text-cyan-400"
+                          : "text-gray-900 group-hover:text-blue-600"
+                      }`}
+                    >
+                      {project.title}
+                    </h3>
+
+                    {/* Highlight metric callout */}
+                    <div
+                      className={`px-3 py-2 rounded-lg mb-3 ${
+                        theme === "dark"
+                          ? "bg-cyan-500/5 border border-cyan-500/15"
+                          : "bg-blue-500/5 border border-blue-500/10"
+                      }`}
+                    >
+                      <p
+                        className={`text-sm font-semibold ${
+                          theme === "dark" ? "text-cyan-400" : "text-blue-600"
                         }`}
                       >
-                        <Github size={15} />
-                        Code
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 ${
-                          theme === "dark"
-                            ? "text-gray-400 hover:text-cyan-400"
-                            : "text-gray-500 hover:text-blue-600"
-                        }`}
-                      >
-                        <ExternalLink size={15} />
-                        Live Demo
-                      </a>
-                    )}
+                        {project.highlight}
+                      </p>
+                    </div>
+
+                    {/* Description */}
+                    <p
+                      className={`text-sm leading-relaxed mb-4 flex-grow ${
+                        theme === "dark" ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      {project.description}
+                    </p>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.techTags.map((tag, j) => (
+                        <span
+                          key={j}
+                          className={`px-2 py-1 text-[11px] font-medium rounded-md transition-colors duration-200 ${
+                            theme === "dark"
+                              ? "bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
+                              : "bg-gray-100 text-gray-500 hover:text-blue-600 hover:bg-blue-500/10"
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action buttons */}
+                    <div
+                      className={`flex items-center gap-2.5 pt-4 mt-auto border-t ${
+                        theme === "dark"
+                          ? "border-gray-700/50"
+                          : "border-gray-200"
+                      }`}
+                    >
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 ${
+                            theme === "dark"
+                              ? "border-gray-700 text-gray-300 hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5"
+                              : "border-gray-200 text-gray-600 hover:border-blue-500/40 hover:text-blue-600 hover:bg-blue-500/5"
+                          }`}
+                        >
+                          <Github size={14} />
+                          Source Code
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
+                            theme === "dark"
+                              ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 hover:bg-cyan-500/25"
+                              : "bg-blue-500/10 text-blue-600 border border-blue-500/20 hover:bg-blue-500/15"
+                          }`}
+                        >
+                          <ExternalLink size={14} />
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
