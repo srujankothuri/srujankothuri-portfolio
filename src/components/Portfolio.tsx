@@ -4,6 +4,7 @@ import Experience from "./Experience";
 import Home from "./Home";
 import About from "./About";
 import Projects from "./Projects";
+import Education from "./Education";
 import Skills from "./Skills";
 import Contact from "./Contact";
 import { useTheme } from "./ThemeContext";
@@ -55,7 +56,7 @@ const Portfolio = () => {
           <Experience />
         </section>
         <section id="education">
-          <PlaceholderSection id="education" title="Education" />
+          <Education />
         </section>
         <section id="skills">
           <Skills />
