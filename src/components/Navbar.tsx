@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useTheme } from "./ThemeContext";
 
 const navItems = [
@@ -14,6 +15,11 @@ const navItems = [
   { id: "roles", label: "Target Roles" },
   { id: "contact", label: "Contact" },
 ];
+
+const RESUME_URL =
+  "https://github.com/srujankothuri/srujankothuri-portfolio/blob/main/src/components/Kothuri_Venkata_Srujan_Resume.pdf?raw=true";
+const GITHUB_URL = "https://github.com/srujankothuri";
+const LINKEDIN_URL = "https://www.linkedin.com/in/srujan-kothuri-2044ba250/";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -32,14 +38,11 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScrollEvent = () => {
-      // Scrolled state for glassmorphism
       setScrolled(window.scrollY > 20);
 
-      // Scroll progress
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
 
-      // Active section detection
       let currentSection = "home";
       for (let item of navItems) {
         const section = document.getElementById(item.id);
@@ -58,11 +61,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScrollEvent);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  const iconBtnClass = `p-2 rounded-lg transition-all duration-300 ${
+    theme === "dark"
+      ? "text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
+      : "text-gray-600 hover:text-blue-500 hover:bg-blue-500/10"
+  }`;
 
   return (
     <>
@@ -92,11 +100,7 @@ const Navbar = () => {
           <div className="flex items-center shrink-0">
             <button
               onClick={() => handleScroll("home")}
-              className={`text-xl font-bold w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 ${
-                theme === "dark"
-                  ? "bg-gradient-to-br from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
-                  : "bg-gradient-to-br from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
-              }`}
+              className="text-xl font-bold w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 bg-gradient-to-br from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
             >
               SK
             </button>
@@ -125,7 +129,6 @@ const Navbar = () => {
                 }`}
               >
                 {item.label}
-                {/* Active underline indicator */}
                 <span
                   className={`absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-[2px] rounded-full transition-all duration-300 ${
                     activeSection === item.id
@@ -137,28 +140,68 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Side — Theme Toggle + Hamburger */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Right Side */}
+          <div className="flex items-center gap-1 shrink-0">
+            {/* Resume Button */}
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`hidden md:flex items-center gap-1.5 px-3.5 py-1.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                theme === "dark"
+                  ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
+                  : "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
+              }`}
+            >
+              <FileText size={14} />
+              Resume
+            </a>
+
+            {/* Separator */}
+            <div className={`hidden md:block w-px h-5 mx-1.5 ${
+              theme === "dark" ? "bg-gray-700/50" : "bg-gray-300/50"
+            }`} />
+
+            {/* GitHub */}
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`hidden md:flex ${iconBtnClass}`}
+              aria-label="GitHub"
+            >
+              <FaGithub size={18} />
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`hidden md:flex ${iconBtnClass}`}
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={18} />
+            </a>
+
+            {/* Separator */}
+            <div className={`hidden md:block w-px h-5 mx-1.5 ${
+              theme === "dark" ? "bg-gray-700/50" : "bg-gray-300/50"
+            }`} />
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-all duration-300 ${
-                theme === "dark"
-                  ? "text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
-                  : "text-gray-600 hover:text-blue-500 hover:bg-blue-500/10"
-              }`}
+              className={iconBtnClass}
+              aria-label="Toggle theme"
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            {/* Hamburger — visible below lg */}
+            {/* Hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
-                theme === "dark"
-                  ? "text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10"
-                  : "text-gray-600 hover:text-blue-500 hover:bg-blue-500/10"
-              }`}
+              className={`lg:hidden ${iconBtnClass}`}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -234,6 +277,42 @@ const Navbar = () => {
                     {item.label}
                   </motion.button>
                 ))}
+              </div>
+
+              {/* Bottom — Resume + Socials */}
+              <div className="absolute bottom-8 left-0 right-0 px-4 space-y-4">
+                {/* Resume */}
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-semibold rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md shadow-blue-500/20 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
+                >
+                  <FileText size={15} />
+                  Download Resume
+                </a>
+
+                {/* Social Icons */}
+                <div className="flex items-center justify-center gap-4">
+                  <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={iconBtnClass}
+                    aria-label="GitHub"
+                  >
+                    <FaGithub size={20} />
+                  </a>
+                  <a
+                    href={LINKEDIN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={iconBtnClass}
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin size={20} />
+                  </a>
+                </div>
               </div>
             </motion.div>
           </>
