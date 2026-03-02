@@ -9,8 +9,12 @@ interface ExperienceItem {
   organization: string;
   location: string;
   date: string;
+  highlight: string;
+  summary: string;
   description: string[];
   techTags: string[];
+  gradient: string;
+  glowColor: string;
   link?: { url: string; label: string };
 }
 
@@ -21,12 +25,15 @@ const experiences: ExperienceItem[] = [
     organization: "Zenshastra Software Services Pvt. Ltd.",
     location: "Bangalore, India",
     date: "Jan 2025 – Jun 2025",
+    highlight: "6 Months · Full-time",
+    summary:
+      "Built backend AI services for document processing, retrieval, and workflow automation.",
     description: [
-      "Developed backend services and REST endpoints in Python (Flask/FastAPI) with SQLAlchemy for document-centric workflows and application integrations.",
-      "Engineered AI workflow services for document processing, summarization, and retrieval-assisted applications using modular pipeline design.",
-      "Integrated FAISS-based retrieval and embeddings pipelines into application services, enabling retrieval-augmented functionality while maintaining endpoint stability.",
-      "Built reusable service modules for PDF parsing, summarization requests, and workflow orchestration with input validation, logging, and robust error handling.",
-      "Improved service maintainability and iterative feature delivery by organizing processing logic into modular components with predictable request/response behaviors.",
+      "Developed <b>backend services and REST endpoints</b> in Python (Flask/FastAPI) with SQLAlchemy for document-centric workflows and application integrations.",
+      "Engineered <b>AI workflow services</b> for document processing, summarization, and retrieval-assisted applications using <b>modular pipeline design</b>.",
+      "Integrated <b>FAISS-based retrieval and embeddings pipelines</b> into application services, enabling retrieval-augmented functionality while maintaining endpoint stability.",
+      "Built <b>reusable service modules</b> for PDF parsing, summarization requests, and workflow orchestration with input validation, logging, and robust error handling.",
+      "Improved <b>service maintainability</b> and iterative feature delivery by organizing processing logic into modular components with predictable request/response behaviors.",
     ],
     techTags: [
       "Python",
@@ -38,19 +45,24 @@ const experiences: ExperienceItem[] = [
       "RAG",
       "REST APIs",
     ],
+    gradient: "from-cyan-500 to-blue-500",
+    glowColor: "rgba(6,182,212,0.12)",
   },
   {
     type: "research",
-    title: "Automating Court Judgement Prediction and Explanation for Indian Legal Cases",
+    title: "Automating Court Judgement Prediction and Explanation",
     organization: "Springer — ICDSA 2025",
     location: "PES University, Bangalore",
     date: "2024 – 2025",
+    highlight: "73.74% Prediction Accuracy · Published at Springer",
+    summary:
+      "End-to-end legal AI system — judgment prediction, summarization, and RAG-powered chatbot.",
     description: [
-      "Built an end-to-end legal AI system spanning judgment prediction & explanation, legal case summarization, and a legal QA chatbot.",
-      "Trained hierarchical XLNet + BiGRU pipelines on 35,000+ Indian legal cases from the ILDC dataset, achieving 73.74% prediction accuracy.",
-      "Implemented InLegalBERT-based summarization achieving 86.67% accuracy and ROUGE-L F1 of 0.5184 on legal document condensation.",
-      "Built a RAG-powered legal chatbot using Mistral-7B, LangChain, and FAISS for retrieval-augmented legal question answering.",
-      "Designed the system for both naive users and legal professionals, covering prediction, explainability, summarization, and legal Q&A.",
+      "Built an <b>end-to-end legal AI system</b> spanning judgment prediction & explanation, legal case summarization, and a legal QA chatbot.",
+      "Trained <b>hierarchical XLNet + BiGRU pipelines</b> on <b>35,000+ Indian legal cases</b> from the ILDC dataset, achieving <b>73.74% prediction accuracy</b>.",
+      "Implemented <b>InLegalBERT-based summarization</b> achieving <b>86.67% accuracy</b> and ROUGE-L F1 of 0.5184 on legal document condensation.",
+      "Built a <b>RAG-powered legal chatbot</b> using Mistral-7B, LangChain, and FAISS for retrieval-augmented legal question answering.",
+      "Designed the system for both <b>naive users and legal professionals</b>, covering prediction, explainability, summarization, and legal Q&A.",
     ],
     techTags: [
       "XLNet",
@@ -62,6 +74,8 @@ const experiences: ExperienceItem[] = [
       "PyTorch",
       "Flask",
     ],
+    gradient: "from-purple-500 to-blue-500",
+    glowColor: "rgba(139,92,246,0.12)",
     link: {
       url: "https://github.com/srujankothuri/Legal-prediction-explanation",
       label: "View Repository",
@@ -89,6 +103,15 @@ const Experience = () => {
           style={{
             background:
               "radial-gradient(circle, rgba(6,182,212,0.5) 0%, rgba(59,130,246,0.2) 50%, transparent 80%)",
+          }}
+        />
+        <div
+          className={`absolute bottom-1/4 -right-32 w-[350px] h-[350px] rounded-full blur-[120px] ${
+            theme === "dark" ? "opacity-10" : "opacity-5"
+          }`}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -139,128 +162,187 @@ const Experience = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.6 }}
               >
-                {/* Timeline dot */}
-                <div
-                  className={`absolute left-0 top-1 w-[38px] h-[38px] md:w-[46px] md:h-[46px] rounded-full flex items-center justify-center border-2 ${
-                    theme === "dark"
-                      ? "bg-gray-900 border-cyan-500/50"
-                      : "bg-white border-blue-500/50"
-                  }`}
-                >
-                  {exp.type === "work" ? (
-                    <Briefcase
-                      size={18}
-                      className={
-                        theme === "dark" ? "text-cyan-400" : "text-blue-500"
-                      }
-                    />
-                  ) : (
-                    <BookOpen
-                      size={18}
-                      className={
-                        theme === "dark" ? "text-cyan-400" : "text-blue-500"
-                      }
-                    />
-                  )}
+                {/* Pulsing timeline dot */}
+                <div className="absolute left-0 top-1 w-[38px] h-[38px] md:w-[46px] md:h-[46px] flex items-center justify-center">
+                  {/* Pulse ring */}
+                  <span
+                    className={`absolute w-full h-full rounded-full animate-ping opacity-20 ${
+                      theme === "dark" ? "bg-cyan-500" : "bg-blue-500"
+                    }`}
+                    style={{ animationDuration: "3s" }}
+                  />
+                  {/* Glow */}
+                  <span
+                    className={`absolute w-full h-full rounded-full blur-md opacity-30 ${
+                      theme === "dark" ? "bg-cyan-500" : "bg-blue-500"
+                    }`}
+                  />
+                  {/* Dot body */}
+                  <div
+                    className={`relative w-full h-full rounded-full flex items-center justify-center border-2 ${
+                      theme === "dark"
+                        ? "bg-gray-900 border-cyan-500/60"
+                        : "bg-white border-blue-500/60"
+                    }`}
+                  >
+                    {exp.type === "work" ? (
+                      <Briefcase
+                        size={18}
+                        className={
+                          theme === "dark" ? "text-cyan-400" : "text-blue-500"
+                        }
+                      />
+                    ) : (
+                      <BookOpen
+                        size={18}
+                        className={
+                          theme === "dark" ? "text-cyan-400" : "text-blue-500"
+                        }
+                      />
+                    )}
+                  </div>
                 </div>
 
-                {/* Card */}
-                <div
-                  className={`relative group p-6 rounded-xl border transition-all duration-300 hover:-translate-y-1 ${
-                    theme === "dark"
-                      ? "bg-gray-800/50 border-gray-700/50 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5"
-                      : "bg-white border-gray-200 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5"
-                  }`}
-                >
-                  {/* Header row */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-                    <div>
-                      <h3
-                        className={`text-xl font-bold ${
-                          theme === "dark" ? "text-white" : "text-gray-900"
-                        }`}
-                      >
-                        {exp.title}
-                      </h3>
-                      <p
-                        className={`text-sm font-medium mt-1 ${
-                          theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                        }`}
-                      >
-                        {exp.organization}
-                      </p>
-                      <p
-                        className={`text-sm mt-0.5 ${
-                          theme === "dark" ? "text-gray-500" : "text-gray-500"
-                        }`}
-                      >
-                        {exp.location}
-                      </p>
-                    </div>
-                    <span
-                      className={`text-sm font-medium whitespace-nowrap px-3 py-1 rounded-full ${
-                        theme === "dark"
-                          ? "bg-gray-700/50 text-gray-300"
-                          : "bg-gray-100 text-gray-600"
-                      }`}
-                    >
-                      {exp.date}
-                    </span>
-                  </div>
+                {/* Card with gradient border glow */}
+                <div className="relative group">
+                  {/* Gradient border — visible on hover */}
+                  <div
+                    className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${exp.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+                  />
 
-                  {/* Description bullets */}
-                  <ul className="space-y-2.5 mb-5">
-                    {exp.description.map((bullet, j) => (
-                      <li
-                        key={j}
-                        className={`flex gap-3 text-sm leading-relaxed ${
-                          theme === "dark" ? "text-gray-300" : "text-gray-600"
-                        }`}
-                      >
-                        <span
-                          className={`mt-2 w-1.5 h-1.5 rounded-full shrink-0 ${
-                            theme === "dark"
-                              ? "bg-cyan-500/60"
-                              : "bg-blue-500/60"
-                          }`}
-                        />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Hover glow shadow */}
+                  <div
+                    className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                    style={{ background: exp.glowColor }}
+                  />
 
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {exp.techTags.map((tag, k) => (
+                  {/* Card body */}
+                  <div
+                    className={`relative p-6 rounded-xl border transition-all duration-300 group-hover:-translate-y-1 ${
+                      theme === "dark"
+                        ? "bg-gray-900 border-gray-700/50"
+                        : "bg-white border-gray-200"
+                    }`}
+                  >
+                    {/* Top row: date + highlight */}
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
                       <span
-                        key={k}
-                        className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors duration-200 ${
+                        className={`text-sm font-medium px-3 py-1 rounded-full ${
                           theme === "dark"
-                            ? "bg-gray-700/50 text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
-                            : "bg-gray-100 text-gray-600 hover:bg-blue-500/10 hover:text-blue-600"
+                            ? "bg-gray-800 text-gray-300"
+                            : "bg-gray-100 text-gray-600"
                         }`}
                       >
-                        {tag}
+                        {exp.date}
                       </span>
-                    ))}
-                  </div>
+                      <span
+                        className={`text-sm font-semibold px-3 py-1 rounded-full ${
+                          theme === "dark"
+                            ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                            : "bg-blue-500/10 text-blue-600 border border-blue-500/20"
+                        }`}
+                      >
+                        {exp.highlight}
+                      </span>
+                    </div>
 
-                  {/* Link (for research) */}
-                  {exp.link && (
-                    <a
-                      href={exp.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1.5 mt-4 text-sm font-medium transition-colors duration-200 ${
+                    {/* Title + Org */}
+                    <h3
+                      className={`text-xl font-bold transition-colors duration-300 ${
                         theme === "dark"
-                          ? "text-cyan-400 hover:text-cyan-300"
-                          : "text-blue-600 hover:text-blue-700"
+                          ? "text-white group-hover:text-cyan-400"
+                          : "text-gray-900 group-hover:text-blue-600"
                       }`}
                     >
-                      {exp.link.label}
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
+                      {exp.title}
+                    </h3>
+                    <p
+                      className={`text-sm font-medium mt-1 ${
+                        theme === "dark" ? "text-cyan-400/80" : "text-blue-600/80"
+                      }`}
+                    >
+                      {exp.organization}
+                    </p>
+                    <p
+                      className={`text-sm ${
+                        theme === "dark" ? "text-gray-500" : "text-gray-500"
+                      }`}
+                    >
+                      {exp.location}
+                    </p>
+
+                    {/* Summary */}
+                    <p
+                      className={`italic text-sm mt-3 ${
+                        theme === "dark" ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
+                      {exp.summary}
+                    </p>
+
+                    {/* Description bullets with bold keywords */}
+                    <ul className="space-y-2.5 mt-4 mb-5">
+                      {exp.description.map((bullet, j) => (
+                        <li
+                          key={j}
+                          className={`flex gap-3 text-sm leading-relaxed ${
+                            theme === "dark"
+                              ? "text-gray-300"
+                              : "text-gray-600"
+                          }`}
+                        >
+                          <span
+                            className={`mt-2 w-1.5 h-1.5 rounded-full shrink-0 ${
+                              theme === "dark"
+                                ? "bg-cyan-500/60"
+                                : "bg-blue-500/60"
+                            }`}
+                          />
+                          <span
+                            dangerouslySetInnerHTML={{ __html: bullet }}
+                            className={`[&_b]:font-semibold ${
+                              theme === "dark"
+                                ? "[&_b]:text-white"
+                                : "[&_b]:text-gray-900"
+                            }`}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {exp.techTags.map((tag, k) => (
+                        <span
+                          key={k}
+                          className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors duration-200 ${
+                            theme === "dark"
+                              ? "bg-gray-800 text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                              : "bg-gray-100 text-gray-600 hover:bg-blue-500/10 hover:text-blue-600"
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Link */}
+                    {exp.link && (
+                      <a
+                        href={exp.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 mt-4 text-sm font-medium transition-colors duration-200 ${
+                          theme === "dark"
+                            ? "text-cyan-400 hover:text-cyan-300"
+                            : "text-blue-600 hover:text-blue-700"
+                        }`}
+                      >
+                        {exp.link.label}
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}

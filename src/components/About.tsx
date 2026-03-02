@@ -1,19 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Layers, FlaskConical, BrainCircuit } from "lucide-react";
+import { Code2, Layers, FlaskConical, BrainCircuit, MapPin, GraduationCap, Sparkles } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 
 const traits = [
-
-  {
-    icon: <BrainCircuit size={24} />,
-    title: "AI/ML Practitioner",
-    description:
-      "Built an end-to-end legal AI system using XLNet, BiGRU, InLegalBERT, and Mistral-7B — from judgment prediction (73.74% accuracy) to RAG-powered chatbots. I don't just use ML APIs — I understand the models underneath.",
-    gradient: "from-rose-500 to-purple-500",
-    glowColor: "rgba(244,63,94,0.15)",
-  },
-  
   {
     icon: <Layers size={24} />,
     title: "Systems Builder",
@@ -38,7 +28,35 @@ const traits = [
     gradient: "from-purple-500 to-blue-500",
     glowColor: "rgba(139,92,246,0.15)",
   },
-  
+  {
+    icon: <BrainCircuit size={24} />,
+    title: "AI/ML Practitioner",
+    description:
+      "Built an end-to-end legal AI system using XLNet, BiGRU, InLegalBERT, and Mistral-7B — from judgment prediction (73.74% accuracy) to RAG-powered chatbots. I don't just use ML APIs — I understand the models underneath.",
+    gradient: "from-rose-500 to-purple-500",
+    glowColor: "rgba(244,63,94,0.15)",
+  },
+];
+
+const narrativeCards = [
+  {
+    icon: <MapPin size={16} />,
+    label: "The Journey",
+    gradient: "from-blue-500 to-cyan-500",
+    glowColor: "rgba(59,130,246,0.12)",
+  },
+  {
+    icon: <GraduationCap size={16} />,
+    label: "Industry & Research",
+    gradient: "from-cyan-500 to-teal-500",
+    glowColor: "rgba(6,182,212,0.12)",
+  },
+  {
+    icon: <Sparkles size={16} />,
+    label: "How I Work",
+    gradient: "from-purple-500 to-blue-500",
+    glowColor: "rgba(139,92,246,0.12)",
+  },
 ];
 
 const About = () => {
@@ -54,7 +72,6 @@ const About = () => {
     >
       {/* Background Gradient Orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Top-right orb */}
         <div
           className={`absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full blur-[120px] ${
             theme === "dark" ? "opacity-20" : "opacity-10"
@@ -64,7 +81,6 @@ const About = () => {
               "radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(6,182,212,0.3) 50%, transparent 80%)",
           }}
         />
-        {/* Bottom-left orb */}
         <div
           className={`absolute -bottom-40 -left-40 w-[450px] h-[450px] rounded-full blur-[120px] ${
             theme === "dark" ? "opacity-15" : "opacity-8"
@@ -74,7 +90,6 @@ const About = () => {
               "radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(59,130,246,0.2) 50%, transparent 80%)",
           }}
         />
-        {/* Center-right small orb */}
         <div
           className={`absolute top-1/2 right-1/4 w-[250px] h-[250px] rounded-full blur-[100px] ${
             theme === "dark" ? "opacity-10" : "opacity-5"
@@ -111,133 +126,159 @@ const About = () => {
           </h2>
         </motion.div>
 
-        {/* Two-column layout: Narrative + Traits */}
+        {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left — Narrative */}
+          {/* Left — Narrative in cards with hover effects */}
           <motion.div
-            className="space-y-6"
+            className="space-y-5"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p
-              className={`text-lg leading-relaxed ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              I grew up in India, studied Computer Science at{" "}
-              <span
-                className={`font-semibold ${
-                  theme === "dark" ? "text-white" : "text-gray-900"
+            {/* Card 1: Origin story */}
+            <div className="relative group">
+              <div
+                className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${narrativeCards[0].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+              />
+              <div
+                className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                style={{ background: narrativeCards[0].glowColor }}
+              />
+              <div
+                className={`relative p-5 rounded-xl border transition-all duration-300 group-hover:-translate-y-1 ${
+                  theme === "dark"
+                    ? "bg-gray-900 border-gray-700/50"
+                    : "bg-white border-gray-200"
                 }`}
               >
-                PES University
-              </span>{" "}
-              in Bangalore, and made the move to Boston for my Master's at{" "}
-              <span
-                className={`font-semibold ${
-                  theme === "dark" ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Northeastern University's Khoury College
-              </span>
-              . That jump — new country, new challenges, higher bar — is 
-              something I actively chose because I wanted to grow faster.
-            </p>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div
+                    className={`p-1.5 rounded-md ${
+                      theme === "dark"
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "bg-blue-500/10 text-blue-500"
+                    }`}
+                  >
+                    {narrativeCards[0].icon}
+                  </div>
+                  <span
+                    className={`text-sm font-semibold ${
+                      theme === "dark" ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {narrativeCards[0].label}
+                  </span>
+                </div>
+                <p
+                  className={`text-[15px] leading-relaxed ${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      theme === "dark"
+                        ? 'I completed my undergraduate degree in <b class="text-white">Computer Science at PES University</b> in Bangalore, where I developed a strong foundation in software engineering and discovered my interest in AI/ML through research. I\'m currently pursuing my <b class="text-white">Master\'s in Computer Science at Northeastern University\'s Khoury College</b> in Boston — a move driven by the opportunity to work on harder problems, learn from a broader engineering community, and push myself in a more challenging academic environment.'
+                        : 'I completed my undergraduate degree in <b class="text-gray-900">Computer Science at PES University</b> in Bangalore, where I developed a strong foundation in software engineering and discovered my interest in AI/ML through research. I\'m currently pursuing my <b class="text-gray-900">Master\'s in Computer Science at Northeastern University\'s Khoury College</b> in Boston — a move driven by the opportunity to work on harder problems, learn from a broader engineering community, and push myself in a more challenging academic environment.',
+                  }}
+                />
+              </div>
+            </div>
 
-            <p
-              className={`text-lg leading-relaxed ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              During my time at Zenshastra as an AI/ML Intern, I got hands-on 
-              with building real backend services, retrieval pipelines, and 
-              document processing workflows. But what stuck with me most was 
-              learning how to write code that other engineers can actually 
-              maintain — not just code that works.
-            </p>
+            {/* Card 2: Work & Research */}
+            <div className="relative group">
+              <div
+                className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${narrativeCards[1].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+              />
+              <div
+                className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                style={{ background: narrativeCards[1].glowColor }}
+              />
+              <div
+                className={`relative p-5 rounded-xl border transition-all duration-300 group-hover:-translate-y-1 ${
+                  theme === "dark"
+                    ? "bg-gray-900 border-gray-700/50"
+                    : "bg-white border-gray-200"
+                }`}
+              >
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div
+                    className={`p-1.5 rounded-md ${
+                      theme === "dark"
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "bg-blue-500/10 text-blue-500"
+                    }`}
+                  >
+                    {narrativeCards[1].icon}
+                  </div>
+                  <span
+                    className={`text-sm font-semibold ${
+                      theme === "dark" ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {narrativeCards[1].label}
+                  </span>
+                </div>
+                <p
+                  className={`text-[15px] leading-relaxed ${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      theme === "dark"
+                        ? 'During my time as an <b class="text-white">AI/ML Intern at Zenshastra</b>, I worked on backend services, retrieval pipelines, and document processing workflows. The most valuable lesson wasn\'t any specific technology — it was understanding how to write <b class="text-white">maintainable, well-structured code</b> that a team can build on. My <b class="text-white">published research</b> (Springer, ICDSA 2025) on <b class="text-cyan-400">automating court judgment prediction</b> gave me hands-on experience with transformer architectures, training pipelines on 35K+ legal cases, and building RAG-powered chatbots with Mistral-7B and FAISS.'
+                        : 'During my time as an <b class="text-gray-900">AI/ML Intern at Zenshastra</b>, I worked on backend services, retrieval pipelines, and document processing workflows. The most valuable lesson wasn\'t any specific technology — it was understanding how to write <b class="text-gray-900">maintainable, well-structured code</b> that a team can build on. My <b class="text-gray-900">published research</b> (Springer, ICDSA 2025) on <b class="text-blue-600">automating court judgment prediction</b> gave me hands-on experience with transformer architectures, training pipelines on 35K+ legal cases, and building RAG-powered chatbots with Mistral-7B and FAISS.',
+                  }}
+                />
+              </div>
+            </div>
 
-            <p
-              className={`text-lg leading-relaxed ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              My published research on{" "}
-              <span
-                className={`font-medium ${
-                  theme === "dark" ? "text-cyan-400" : "text-blue-600"
+            {/* Card 3: Philosophy */}
+            <div className="relative group">
+              <div
+                className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${narrativeCards[2].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+              />
+              <div
+                className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                style={{ background: narrativeCards[2].glowColor }}
+              />
+              <div
+                className={`relative p-5 rounded-xl border transition-all duration-300 group-hover:-translate-y-1 ${
+                  theme === "dark"
+                    ? "bg-gray-900 border-gray-700/50"
+                    : "bg-white border-gray-200"
                 }`}
               >
-                automating court judgment prediction
-              </span>{" "}
-              (Springer, ICDSA 2025) started from genuine curiosity — can AI 
-              actually reason about legal decisions? That project pushed me deep 
-              into transformer architectures, training XLNet + BiGRU pipelines 
-              on 35,000+ legal cases, building RAG-powered chatbots with 
-              Mistral-7B and FAISS, and achieving 73.74% prediction accuracy. 
-              That same hands-on approach to AI/ML carried into{" "}
-              <span
-                className={`font-medium ${
-                  theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                }`}
-              >
-                PageMaster
-              </span>{" "}
-              (a PDF summarization and QA app) and{" "}
-              <span
-                className={`font-medium ${
-                  theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                }`}
-              >
-                Prompt Refinerz
-              </span>{" "}
-              (a multi-model prompt scoring service).
-            </p>
-
-            <p
-              className={`text-lg leading-relaxed ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              That curiosity is what drives every project. Whether it was 
-              learning{" "}
-              <span
-                className={`font-medium ${
-                  theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                }`}
-              >
-                Go from scratch for SentinelFS
-              </span>
-              , understanding{" "}
-              <span
-                className={`font-medium ${
-                  theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                }`}
-              >
-                Kafka and Airflow for TaxiPulse
-              </span>
-              , or diving into{" "}
-              <span
-                className={`font-medium ${
-                  theme === "dark" ? "text-cyan-400" : "text-blue-600"
-                }`}
-              >
-                XGBoost explainability for FraudLens
-              </span>
-              {" "}— each project taught me something I didn't know before, and 
-              that's the point.
-            </p>
-
-            <p
-              className={`text-lg leading-relaxed ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              I don't claim to know everything — I'm still learning. But I know 
-              how to pick up something new, go deep, build something real with 
-              it, and document it well enough that the work speaks for itself.
-            </p>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div
+                    className={`p-1.5 rounded-md ${
+                      theme === "dark"
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "bg-blue-500/10 text-blue-500"
+                    }`}
+                  >
+                    {narrativeCards[2].icon}
+                  </div>
+                  <span
+                    className={`text-sm font-semibold ${
+                      theme === "dark" ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {narrativeCards[2].label}
+                  </span>
+                </div>
+                <p
+                  className={`text-[15px] leading-relaxed ${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      theme === "dark"
+                        ? 'I\'m still early in my career and learning every day. What I can offer is the ability to <b class="text-white">pick up something unfamiliar, understand it deeply, and build something meaningful with it</b>. Every project I take on starts with a problem I haven\'t solved before — and that\'s exactly why I take it on.'
+                        : 'I\'m still early in my career and learning every day. What I can offer is the ability to <b class="text-gray-900">pick up something unfamiliar, understand it deeply, and build something meaningful with it</b>. Every project I take on starts with a problem I haven\'t solved before — and that\'s exactly why I take it on.',
+                  }}
+                />
+              </div>
+            </div>
           </motion.div>
 
           {/* Right — Trait Cards with gradient borders */}
@@ -251,7 +292,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
               >
-                {/* Gradient border glow — visible on hover */}
+                {/* Gradient border glow */}
                 <div
                   className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${trait.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
                 />
@@ -270,7 +311,6 @@ const About = () => {
                       : "bg-white border-gray-200"
                   }`}
                 >
-                  {/* Icon — animates on hover */}
                   <motion.div
                     className={`inline-flex p-2.5 rounded-lg mb-4 ${
                       theme === "dark"
@@ -283,7 +323,6 @@ const About = () => {
                     {trait.icon}
                   </motion.div>
 
-                  {/* Title */}
                   <h3
                     className={`text-lg font-bold mb-2 transition-colors duration-300 ${
                       theme === "dark"
@@ -294,7 +333,6 @@ const About = () => {
                     {trait.title}
                   </h3>
 
-                  {/* Description */}
                   <p
                     className={`text-sm leading-relaxed ${
                       theme === "dark" ? "text-gray-400" : "text-gray-600"
