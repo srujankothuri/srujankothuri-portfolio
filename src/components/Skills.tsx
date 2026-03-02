@@ -1,111 +1,198 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Code2, Layout, BrainCircuit, Database, Cloud, Server } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 
-const skills = [
-  { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg", url: "https://en.wikipedia.org/wiki/C_(programming_language)" },
-  { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg", url: "https://isocpp.org/" },
-  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", url: "https://www.python.org/" },
-  { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", url: "https://www.java.com/" },
-  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", url: "https://www.typescriptlang.org/" },
-  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", url: "https://www.mysql.com/" },
-  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", url: "https://www.mongodb.com/" },
-  { name: "React.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", url: "https://react.dev/" },
-  { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", url: "https://nextjs.org/" },
-  { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", url: "https://nodejs.org/" },
-  { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg", url: "https://flask.palletsprojects.com/" },
-  { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg", url: "https://www.tensorflow.org/" },
-  { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg", url: "https://pytorch.org/" },
-  { name: "OpenCV", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg", url: "https://opencv.org/" },
-  { name: "Hadoop", icon: "https://vectorlogo.zone/logos/apache_hadoop/apache_hadoop-icon.svg", url: "https://hadoop.apache.org/" },
-  { name: "AWS", icon: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg", url: "https://aws.amazon.com/" },
-  { name: "scikit-learn", icon: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg", url: "https://scikit-learn.org/" },
-  { name: "Keras", icon: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg", url: "https://keras.io/" },
-  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", url: "https://www.docker.com/" },
-  { name: "Streamlit", icon: "https://streamlit.io/images/brand/streamlit-mark-color.svg", url: "https://streamlit.io/" },
-  { name: "GPT", icon: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", url: "https://openai.com/gpt" },
-  { name: "Transformers", icon: "https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.svg", url: "https://huggingface.co/docs/transformers/index" },
-  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", url: "https://git-scm.com/" }
+interface SkillCategory {
+  icon: React.ReactNode;
+  title: string;
+  skills: string[];
+  gradient: string;
+  glowColor: string;
+}
+
+const categories: SkillCategory[] = [
+  {
+    icon: <Code2 size={22} />,
+    title: "Languages",
+    skills: ["Python", "Java", "Go", "C++", "JavaScript", "TypeScript", "SQL", "Bash", "HTML", "CSS"],
+    gradient: "from-blue-500 to-cyan-500",
+    glowColor: "rgba(59,130,246,0.12)",
+  },
+  {
+    icon: <Layout size={22} />,
+    title: "Frontend & Mobile",
+    skills: ["React", "Next.js", "React Native", "Expo", "Tailwind CSS", "Swing GUI"],
+    gradient: "from-cyan-500 to-teal-500",
+    glowColor: "rgba(6,182,212,0.12)",
+  },
+  {
+    icon: <Server size={22} />,
+    title: "Backend & APIs",
+    skills: ["FastAPI", "Flask", "REST APIs", "gRPC", "Protocol Buffers", "SQLAlchemy", "WebSockets", "Node.js"],
+    gradient: "from-teal-500 to-green-500",
+    glowColor: "rgba(20,184,166,0.12)",
+  },
+  {
+    icon: <BrainCircuit size={22} />,
+    title: "AI/ML & Data Science",
+    skills: ["Scikit-learn", "TensorFlow", "PyTorch", "XGBoost", "SHAP", "Transformers", "BERT", "XLNet", "LangChain", "FAISS", "RAG", "Pandas", "NumPy", "Streamlit"],
+    gradient: "from-purple-500 to-blue-500",
+    glowColor: "rgba(139,92,246,0.12)",
+  },
+  {
+    icon: <Database size={22} />,
+    title: "Data Engineering",
+    skills: ["Apache Kafka", "Apache Airflow", "ETL/ELT Pipelines", "Batch Processing", "Streaming Pipelines", "Data Modeling", "Data Validation"],
+    gradient: "from-orange-500 to-rose-500",
+    glowColor: "rgba(249,115,22,0.12)",
+  },
+  {
+    icon: <Cloud size={22} />,
+    title: "Databases & DevOps",
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Docker", "Git/GitHub", "GitHub Actions", "CI/CD", "Linux/Unix", "Vercel", "Postman"],
+    gradient: "from-rose-500 to-purple-500",
+    glowColor: "rgba(244,63,94,0.12)",
+  },
 ];
 
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.22, delayChildren: 0.5 }, // First appears at 1.3s, others every 0.75s
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.9 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const Skills: React.FC = () => {
+const Skills = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] py-12">
-      <motion.h1
-        className={`text-4xl md:text-5xl font-bold mb-8 text-center ${
-          theme === "dark" ? "text-white" : "text-gray-900"
-        }`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        Skills
-      </motion.h1>
-      <motion.p
-        className={`text-lg mb-8 text-center ${
-          theme === "dark" ? "text-gray-300" : "text-gray-600"
-        }`}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        My proficiency lies in the following skills, tools, and technologies:
-      </motion.p>
+    <section
+      className={`relative w-full min-h-screen py-24 px-6 md:px-12 overflow-hidden ${
+        theme === "dark"
+          ? "bg-gradient-to-b from-gray-900 to-gray-900"
+          : "bg-gradient-to-b from-gray-50 via-white to-gray-50"
+      }`}
+    >
+      {/* Background orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className={`absolute top-1/4 -right-40 w-[450px] h-[450px] rounded-full blur-[120px] ${
+            theme === "dark" ? "opacity-15" : "opacity-8"
+          }`}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(59,130,246,0.2) 50%, transparent 80%)",
+          }}
+        />
+        <div
+          className={`absolute bottom-1/4 -left-40 w-[400px] h-[400px] rounded-full blur-[120px] ${
+            theme === "dark" ? "opacity-10" : "opacity-5"
+          }`}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)",
+          }}
+        />
+      </div>
 
-      {/* Animated Skills Grid */}
-      <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-center"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {skills.map((skill, index) => (
-          <motion.a
-            key={index}
-            href={skill.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center transform transition-transform duration-300 hover:scale-110 group"
-            variants={itemVariants}
+      <div className="relative max-w-6xl mx-auto z-10">
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span
+            className={`text-sm font-semibold uppercase tracking-widest ${
+              theme === "dark" ? "text-cyan-400" : "text-blue-500"
+            }`}
           >
-            <div className="relative">
-              <motion.div
-                className="h-12 w-12 rounded-full flex items-center justify-center"
-                whileHover={{ scale: 1.2 }} // Enlarge the icon on hover
+            Tech Stack
+          </span>
+          <h2
+            className={`text-4xl md:text-5xl font-extrabold mt-3 ${
+              theme === "dark" ? "text-white" : "text-gray-900"
+            }`}
+          >
+            Technologies I Work With
+          </h2>
+        </motion.div>
+
+        {/* Skills Grid — 3 columns on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {categories.map((cat, i) => (
+            <motion.div
+              key={i}
+              className="relative group h-full"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            >
+              {/* Gradient border glow */}
+              <div
+                className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${cat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+              />
+
+              {/* Hover glow shadow */}
+              <div
+                className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                style={{ background: cat.glowColor }}
+              />
+
+              {/* Card */}
+              <div
+                className={`relative h-full p-5 rounded-xl border transition-all duration-300 group-hover:-translate-y-1 ${
+                  theme === "dark"
+                    ? "bg-gray-900 border-gray-700/50"
+                    : "bg-white border-gray-200"
+                }`}
               >
-                <img
-                  src={skill.icon}
-                  alt={skill.name}
-                  className="h-full w-full object-contain"
-                />
-              </motion.div>
-              <div className="absolute inset-0 rounded-full bg-teal-500 opacity-0 group-hover:opacity-70 group-hover:blur-md transition-all duration-300"></div>
-            </div>
-            <span className={`${theme === "dark" ? "text-gray-300" : "text-gray-700"} mt-2 font-medium transition-colors duration-300 hover:text-blue-500`}>
-              {skill.name}
-            </span>
-          </motion.a>
-        ))}
-      </motion.div>
-    </div>
+                {/* Header — icon + title */}
+                <div className="flex items-center gap-3 mb-4">
+                  <motion.div
+                    className={`p-2.5 rounded-lg ${
+                      theme === "dark"
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "bg-blue-500/10 text-blue-500"
+                    }`}
+                    whileHover={{ scale: 1.15, rotate: 8 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 15,
+                    }}
+                  >
+                    {cat.icon}
+                  </motion.div>
+                  <h3
+                    className={`text-lg font-bold transition-colors duration-300 ${
+                      theme === "dark"
+                        ? "text-white group-hover:text-cyan-400"
+                        : "text-gray-900 group-hover:text-blue-600"
+                    }`}
+                  >
+                    {cat.title}
+                  </h3>
+                </div>
+
+                {/* Skills list */}
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((skill, j) => (
+                    <span
+                      key={j}
+                      className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200 ${
+                        theme === "dark"
+                          ? "bg-gray-800/50 text-gray-300 border-gray-700/50 hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5"
+                          : "bg-gray-50 text-gray-600 border-gray-200 hover:border-blue-500/40 hover:text-blue-600 hover:bg-blue-500/5"
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
