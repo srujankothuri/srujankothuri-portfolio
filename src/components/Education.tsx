@@ -151,18 +151,20 @@ const Education = () => {
                 }`}
               >
                 {/* Banner Photo */}
-                <div className="relative h-56 overflow-hidden">
+                <div className={`relative overflow-hidden ${
+                  theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+                }`}>
                   <img
                     src={edu.image}
                     alt={edu.university}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="w-full max-h-72 object-contain transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* Gradient overlay — only bottom fade */}
+                  {/* Bottom edge fade only — very subtle */}
                   <div
-                    className={`absolute inset-0 ${
+                    className={`absolute bottom-0 left-0 right-0 h-12 ${
                       theme === "dark"
-                        ? "bg-gradient-to-t from-gray-900 via-transparent to-transparent"
-                        : "bg-gradient-to-t from-white via-transparent to-transparent"
+                        ? "bg-gradient-to-t from-gray-900 to-transparent"
+                        : "bg-gradient-to-t from-white to-transparent"
                     }`}
                   />
                   {/* Date badge on photo */}
