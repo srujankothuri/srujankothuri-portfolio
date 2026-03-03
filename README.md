@@ -1,125 +1,99 @@
-# Srujan Kothuri — Developer Portfolio
+# srujankothuri.vercel.app
 
-A modern, responsive personal portfolio built with **React + TypeScript + Vite**, focused on presenting experience in AI/ML, full-stack development, projects, skills, and contact details in a clean single-page experience.
+My personal portfolio website — built to showcase my projects, skills, and experience as a software engineer.
 
-## 🚀 Overview
+**[→ View Live Site](https://srujankothuri.vercel.app)**
 
-This project is a production-style portfolio website with:
-
-- A section-based single-page layout (`Home`, `About`, `Projects`, `Skills`, `Resume`, `Contact`)
-- Dark/light theme support using a custom context provider
-- Motion-enhanced UI interactions using Framer Motion
-- Tailwind CSS-based styling with responsive design patterns
-- Resume download support (PDF/DOCX)
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- MUI + Emotion
-- React Icons / Lucide Icons
-
-### Tooling
-- ESLint
-- PostCSS + Autoprefixer
-
-## 📁 Project Structure
-
-```bash
-.
-├── src/
-│   ├── components/
-│   │   ├── Navbar.tsx
-│   │   ├── Home.tsx
-│   │   ├── About.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Skills.tsx
-│   │   ├── Resume.tsx
-│   │   ├── Contact.tsx
-│   │   └── ThemeContext.tsx
-│   ├── App.tsx
-│   ├── index.css
-│   └── index.tsx
-├── index.html
-├── package.json
-└── vite.config.ts
-```
-
-## ⚙️ Getting Started
-
-### 1) Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd srujankothuri-portfolio
-```
-
-### 2) Install dependencies
-
-```bash
-npm install
-```
-
-### 3) Start development server
-
-```bash
-npm run dev
-```
-
-The app will run on the local Vite dev server (typically `http://localhost:5173`).
-
-## 📜 Available Scripts
-
-- `npm run dev` — Run the app in development mode
-- `npm run build` — Create a production build
-- `npm run preview` — Preview the production build locally
-- `npm run lint` — Run ESLint checks
-
-## ✨ Key Features
-
-- **Typed hero intro animation** for first impression
-- **Section navigation** via a top navbar
-- **Project showcase** with emphasis on practical applications
-- **Skills representation** for AI/ML, data, cloud, and full-stack areas
-- **Resume download workflow** (PDF + DOCX)
-- **Social/contact callouts** for direct networking
-
-## 🎨 Customization Guide
-
-To adapt this portfolio for your own use:
-
-1. Update profile content in component files under `src/components/`
-2. Replace images and resume files in `src/components/`
-3. Update social/profile links in `Contact.tsx`
-4. Tune theme styling and colors through Tailwind classes
-
-## 📦 Deployment
-
-You can deploy this Vite app to platforms like:
-
-- Vercel
-- Netlify
-- GitHub Pages
-- Render
-
-General production flow:
-
-```bash
-npm run build
-```
-
-Then deploy the generated `dist/` directory.
-
-## 👨‍💻 Author
-
-**Srujan Kothuri**
-
-If you found this useful, feel free to fork it and customize it for your own portfolio.
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000?logo=vercel&logoColor=white)
 
 ---
 
-If you want, I can also generate a **premium version of this README** with badges, architecture notes, and deployment buttons tailored for GitHub.
+## Tech Stack
+
+- **Framework:** React 18 + TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS 4
+- **Animations:** Framer Motion
+- **Icons:** Lucide React + React Icons
+- **Deployment:** Vercel
+
+## Features
+
+- Light/dark theme with system preference detection
+- Responsive design — works on desktop, tablet, and mobile
+- Smooth scroll navigation with active section tracking
+- Scroll progress indicator
+- Interactive terminal easter egg (`~/srujan $`)
+- Filterable project showcase with featured project cards
+- Browser mockup frames for project screenshots
+- Gradient border glow hover effects
+- Mobile slide-in navigation menu
+- One-click resume download
+
+## Sections
+
+| Section | Description |
+|---------|-------------|
+| **Home** | Hero with rotating "I build..." text, CTAs, and open-to-work badge |
+| **About** | Personal narrative + trait cards |
+| **Experience** | Timeline with work experience and published research |
+| **Education** | University cards with photos, GPA, and coursework |
+| **Skills** | 6 categorized technology groups |
+| **Projects** | 4 featured (with screenshots) + 5 regular, filterable by category |
+| **Target Roles** | Roles I'm targeting for Summer 2026 / Fall 2026 |
+| **Contact** | Email, phone, socials, and resume download |
+
+## Getting Started
+
+```bash
+# Clone
+git clone https://github.com/srujankothuri/srujan-portfolio-website.git
+cd srujan-portfolio-website
+
+# Install
+npm install
+
+# Dev server
+npm run dev
+
+# Build
+npm run build
+```
+
+## Project Structure
+
+```
+src/
+├── assets/images/       # Profile photos and project screenshots
+├── components/
+│   ├── About.tsx
+│   ├── Contact.tsx
+│   ├── Education.tsx
+│   ├── Experience.tsx
+│   ├── Home.tsx
+│   ├── Navbar.tsx
+│   ├── Portfolio.tsx
+│   ├── Projects.tsx
+│   ├── ScrollToTop.tsx
+│   ├── Skills.tsx
+│   ├── TargetRoles.tsx
+│   ├── Terminal.tsx
+│   └── ThemeContext.tsx
+├── App.tsx
+├── index.css
+└── main.tsx
+public/
+└── Srujan_Kothuri_Software_Engineer_Resume.pdf
+```
+
+## License
+
+MIT
+
+---
+
+Built by [Srujan Kothuri](https://srujankothuri.vercel.app)
