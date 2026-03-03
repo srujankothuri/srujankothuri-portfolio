@@ -5,6 +5,7 @@ import Home from "./Home";
 import About from "./About";
 import Projects from "./Projects";
 import Education from "./Education";
+import TargetRoles from "./TargetRoles";
 import Skills from "./Skills";
 import Contact from "./Contact";
 import { useTheme } from "./ThemeContext";
@@ -65,7 +66,7 @@ const Portfolio = () => {
           <Projects />
         </section>
         <section id="roles">
-          <PlaceholderSection id="roles" title="Target Roles" />
+          <TargetRoles />
         </section>
         <section id="contact">
           <Contact />
