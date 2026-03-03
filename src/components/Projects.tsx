@@ -18,6 +18,8 @@ interface Project {
   demo?: string;
   featured?: boolean;
   image?: string;
+  gradient: string;
+  glowColor: string;
 }
 
 const filters = [
@@ -42,6 +44,8 @@ const projects: Project[] = [
     demo: "https://taxipulse-srujankothuri.streamlit.app/",
     featured: true,
     image: taxipulseImg,
+    gradient: "from-blue-500 to-cyan-500",
+    glowColor: "rgba(59,130,246,0.12)",
   },
   {
     title: "SentinelFS",
@@ -54,6 +58,8 @@ const projects: Project[] = [
     github: "https://github.com/srujankothuri/SentinelFS",
     featured: true,
     image: sentinelfsImg,
+    gradient: "from-teal-500 to-green-500",
+    glowColor: "rgba(20,184,166,0.12)",
   },
   {
     title: "Legal AI Suite",
@@ -66,6 +72,8 @@ const projects: Project[] = [
     github: "https://github.com/srujankothuri/Legal-prediction-explanation",
     featured: true,
     image: legalaiImg,
+    gradient: "from-rose-500 to-purple-500",
+    glowColor: "rgba(244,63,94,0.12)",
   },
   {
     title: "SpendWiseAI",
@@ -78,6 +86,8 @@ const projects: Project[] = [
     github: "https://github.com/srujankothuri/SpendWiseAI",
     featured: true,
     image: spendwiseaiImg,
+    gradient: "from-cyan-500 to-blue-500",
+    glowColor: "rgba(6,182,212,0.12)",
   },
   {
     title: "FraudLens",
@@ -89,6 +99,8 @@ const projects: Project[] = [
     techTags: ["Python", "Scikit-learn", "XGBoost", "SHAP", "Pandas"],
     github: "https://github.com/srujankothuri/FraudLens",
     demo: "https://fraudlens-srujankothuri.streamlit.app/",
+    gradient: "from-purple-500 to-blue-500",
+    glowColor: "rgba(139,92,246,0.12)",
   },
   {
     title: "ShopFlow",
@@ -100,6 +112,8 @@ const projects: Project[] = [
     techTags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind"],
     github: "https://github.com/srujankothuri/ShopFlow",
     demo: "https://shopflow-srujan-kothuris-projects.vercel.app/dashboard",
+    gradient: "from-orange-500 to-rose-500",
+    glowColor: "rgba(249,115,22,0.12)",
   },
   {
     title: "PageMaster",
@@ -111,6 +125,8 @@ const projects: Project[] = [
     techTags: ["Python", "Streamlit", "LLM APIs", "PDF Processing"],
     github: "https://github.com/srujankothuri/PageMaster",
     demo: "https://pagemaster-demo.streamlit.app",
+    gradient: "from-blue-500 to-purple-500",
+    glowColor: "rgba(59,130,246,0.12)",
   },
   {
     title: "Prompt Refinerz",
@@ -121,6 +137,8 @@ const projects: Project[] = [
       "FastAPI service that refines prompts and returns scored suggestions using multi-model routing and structured response schemas.",
     techTags: ["FastAPI", "Python", "JavaScript", "LLM APIs"],
     github: "https://github.com/srujankothuri/prompt-refinerz",
+    gradient: "from-teal-500 to-cyan-500",
+    glowColor: "rgba(20,184,166,0.12)",
   },
   {
     title: "EventFlow",
@@ -131,6 +149,8 @@ const projects: Project[] = [
       "Java calendar app with CLI and Swing GUI, recurring events, multi-timezone support, exports (.csv/.ics), and analytics dashboards.",
     techTags: ["Java", "Swing", "Gradle", "JUnit"],
     github: "https://github.com/srujankothuri/EventFlow",
+    gradient: "from-green-500 to-teal-500",
+    glowColor: "rgba(34,197,94,0.12)",
   },
 ];
 
@@ -255,11 +275,21 @@ const Projects = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.12, duration: 0.5 }}
                   >
+                    <div className="relative">
+                      {/* Gradient border glow */}
+                      <div
+                        className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+                      />
+                      {/* Hover glow shadow */}
+                      <div
+                        className="absolute -inset-3 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+                        style={{ background: project.glowColor }}
+                      />
                     <div
-                      className={`rounded-2xl border overflow-hidden transition-all duration-500 hover:shadow-2xl ${
+                      className={`relative rounded-2xl border overflow-hidden transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-2xl ${
                         theme === "dark"
-                          ? "bg-gray-800/30 border-gray-700/40 hover:border-cyan-500/20 hover:shadow-cyan-500/5"
-                          : "bg-white border-gray-200 hover:border-blue-500/20 hover:shadow-blue-500/5"
+                          ? "bg-gray-900 border-gray-700/40 group-hover:shadow-cyan-500/5"
+                          : "bg-white border-gray-200 group-hover:shadow-blue-500/5"
                       }`}
                     >
                       <div className="flex flex-col lg:flex-row">
@@ -442,6 +472,7 @@ const Projects = () => {
                         </div>
                       </div>
                     </div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -481,20 +512,26 @@ const Projects = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.08, duration: 0.4 }}
                   >
+                    <div className="relative h-full">
+                      {/* Gradient border glow */}
+                      <div
+                        className={`absolute -inset-[1px] rounded-xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+                      />
+                      {/* Hover glow shadow */}
+                      <div
+                        className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                        style={{ background: project.glowColor }}
+                      />
                     <div
-                      className={`h-full flex flex-col rounded-xl border overflow-hidden transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg ${
+                      className={`relative h-full flex flex-col rounded-xl border overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5 ${
                         theme === "dark"
-                          ? "bg-gray-800/30 border-gray-700/40 group-hover:border-cyan-500/20 group-hover:shadow-cyan-500/5"
-                          : "bg-white border-gray-200 group-hover:border-blue-500/20 group-hover:shadow-blue-500/5"
+                          ? "bg-gray-900 border-gray-700/40"
+                          : "bg-white border-gray-200"
                       }`}
                     >
                       {/* Accent line */}
                       <div
-                        className={`h-0.5 w-full ${
-                          theme === "dark"
-                            ? "bg-gradient-to-r from-cyan-500/50 to-blue-500/50"
-                            : "bg-gradient-to-r from-blue-500/50 to-cyan-500/50"
-                        }`}
+                        className={`h-0.5 w-full bg-gradient-to-r ${project.gradient}`}
                       />
 
                       <div className="flex flex-col flex-grow p-5">
@@ -609,6 +646,7 @@ const Projects = () => {
                           )}
                         </div>
                       </div>
+                    </div>
                     </div>
                   </motion.div>
                 ))}
