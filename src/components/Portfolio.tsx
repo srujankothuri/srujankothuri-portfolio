@@ -6,6 +6,7 @@ import About from "./About";
 import Projects from "./Projects";
 import Education from "./Education";
 import TargetRoles from "./TargetRoles";
+import Terminal from "./Terminal";
 import Skills from "./Skills";
 import Contact from "./Contact";
 import { useTheme } from "./ThemeContext";
@@ -72,6 +73,8 @@ const Portfolio = () => {
           <Contact />
         </section>
       </div>
+
+      <Terminal />
     </>
   );
 };
