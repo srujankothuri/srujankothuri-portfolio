@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Briefcase, Code2, Database, BrainCircuit, Server, Smartphone, BarChart3, Layers } from "lucide-react";
+import { Briefcase, Code2, Database, BrainCircuit, Server, Smartphone, BarChart3, Layers, Cloud, Settings } from "lucide-react";
 import { useTheme } from "./ThemeContext";
 
 interface Role {
@@ -16,6 +16,8 @@ const roles: Role[] = [
   { title: "Backend Engineer", icon: <Server size={18} /> },
   { title: "Data Scientist", icon: <BarChart3 size={18} /> },
   { title: "Mobile Developer", icon: <Smartphone size={18} /> },
+  { title: "DevOps Engineer", icon: <Settings size={18} /> },
+  { title: "Cloud Engineer", icon: <Cloud size={18} /> },
 ];
 
 const TargetRoles = () => {
