@@ -6,18 +6,20 @@ import { useTheme } from "./ThemeContext";
 interface Role {
   title: string;
   icon: React.ReactNode;
+  gradient: string;
+  glowColor: string;
 }
 
 const roles: Role[] = [
-  { title: "Software Development Engineer", icon: <Code2 size={18} /> },
-  { title: "Data Engineer", icon: <Database size={18} /> },
-  { title: "AI / ML Engineer", icon: <BrainCircuit size={18} /> },
-  { title: "Full Stack Developer", icon: <Layers size={18} /> },
-  { title: "Backend Engineer", icon: <Server size={18} /> },
-  { title: "Data Scientist", icon: <BarChart3 size={18} /> },
-  { title: "Mobile Developer", icon: <Smartphone size={18} /> },
-  { title: "DevOps Engineer", icon: <Settings size={18} /> },
-  { title: "Cloud Engineer", icon: <Cloud size={18} /> },
+  { title: "Software Development Engineer", icon: <Code2 size={18} />, gradient: "from-blue-500 to-cyan-500", glowColor: "rgba(59,130,246,0.12)" },
+  { title: "Data Engineer", icon: <Database size={18} />, gradient: "from-cyan-500 to-teal-500", glowColor: "rgba(6,182,212,0.12)" },
+  { title: "AI / ML Engineer", icon: <BrainCircuit size={18} />, gradient: "from-purple-500 to-blue-500", glowColor: "rgba(139,92,246,0.12)" },
+  { title: "Full Stack Developer", icon: <Layers size={18} />, gradient: "from-teal-500 to-green-500", glowColor: "rgba(20,184,166,0.12)" },
+  { title: "Backend Engineer", icon: <Server size={18} />, gradient: "from-orange-500 to-rose-500", glowColor: "rgba(249,115,22,0.12)" },
+  { title: "Data Scientist", icon: <BarChart3 size={18} />, gradient: "from-rose-500 to-purple-500", glowColor: "rgba(244,63,94,0.12)" },
+  { title: "Mobile Developer", icon: <Smartphone size={18} />, gradient: "from-blue-500 to-purple-500", glowColor: "rgba(59,130,246,0.12)" },
+  { title: "DevOps Engineer", icon: <Settings size={18} />, gradient: "from-green-500 to-teal-500", glowColor: "rgba(34,197,94,0.12)" },
+  { title: "Cloud Engineer", icon: <Cloud size={18} />, gradient: "from-cyan-500 to-blue-500", glowColor: "rgba(6,182,212,0.12)" },
 ];
 
 const TargetRoles = () => {
@@ -110,11 +112,11 @@ const TargetRoles = () => {
             >
               {/* Glow */}
               <div
-                className={`absolute -inset-[1px] rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
+                className={`absolute -inset-[1px] rounded-xl bg-gradient-to-r ${role.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]`}
               />
               <div
                 className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
-                style={{ background: "rgba(59,130,246,0.1)" }}
+                style={{ background: role.glowColor }}
               />
 
               <div
